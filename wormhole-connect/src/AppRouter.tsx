@@ -16,6 +16,7 @@ import WalletModal from './views/WalletModal';
 import { SEARCH_TX } from './config';
 import { setRoute } from './store/router';
 import { clearPorticoBridge } from 'store/porticoBridge';
+import { clearNTT } from 'store/ntt';
 
 const useStyles = makeStyles()((theme: any) => ({
   appContent: {
@@ -56,6 +57,9 @@ function AppRouter() {
     if (prevRoute === bridgeRoute && route !== bridgeRoute) {
       dispatch(clearTransfer());
       dispatch(clearPorticoBridge());
+    }
+    if (prevRoute !== route) {
+      dispatch(clearNTT());
     }
   }, [route, prevRoute, dispatch]);
 

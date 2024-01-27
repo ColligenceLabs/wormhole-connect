@@ -1,15 +1,21 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ParsedMessage, ParsedRelayerMessage } from 'utils/sdk';
-import { SignedMessage, TransferDestInfo } from 'routes';
+import { UnsignedNTTMessage, SignedMessage, TransferDestInfo } from 'routes';
 import { Route } from 'config/types';
+import { DeliveryStatus } from '@certusone/wormhole-sdk/lib/esm/relayer';
 
 export enum MessageType {
   BRIDGE = 1,
   RELAY = 3,
 }
 
+export interface RelayerDeliveryStatus {
+  status: DeliveryStatus;
+  revertString: string;
+}
+
 export interface RedeemState {
-  txData: ParsedMessage | ParsedRelayerMessage | undefined;
+  txData: ParsedMessage | ParsedRelayerMessage | UnsignedNTTMessage | undefined;
   signedMessage: SignedMessage | undefined;
   sendTx: string;
   redeemTx: string;
@@ -17,6 +23,7 @@ export interface RedeemState {
   isVaaEnqueued: boolean;
   route: Route | undefined;
   transferDestInfo: TransferDestInfo | undefined;
+  deliveryStatus: RelayerDeliveryStatus | undefined;
 }
 
 const initialState: RedeemState = {
@@ -28,6 +35,7 @@ const initialState: RedeemState = {
   isVaaEnqueued: false,
   route: undefined,
   transferDestInfo: undefined,
+  deliveryStatus: undefined,
 };
 
 export const redeemSlice = createSlice({
@@ -36,7 +44,11 @@ export const redeemSlice = createSlice({
   reducers: {
     setTxDetails: (
       state: RedeemState,
-      { payload }: PayloadAction<ParsedMessage | ParsedRelayerMessage>,
+      {
+        payload,
+      }: PayloadAction<
+        ParsedMessage | ParsedRelayerMessage | UnsignedNTTMessage
+      >,
     ) => {
       state.txData = payload;
     },
@@ -79,6 +91,12 @@ export const redeemSlice = createSlice({
     ) => {
       state.signedMessage = payload;
     },
+    setDeliveryStatus: (
+      state: RedeemState,
+      { payload }: PayloadAction<RelayerDeliveryStatus>,
+    ) => {
+      state.deliveryStatus = payload;
+    },
   },
 });
 
@@ -92,6 +110,7 @@ export const {
   clearRedeem,
   setRoute,
   setSignedMessage,
+  setDeliveryStatus,
 } = redeemSlice.actions;
 
 export default redeemSlice.reducer;
