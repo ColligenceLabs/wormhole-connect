@@ -2751,4 +2751,38 @@ export const MAINNET_TOKENS: TokensConfig = {
       },
     },
   },
+  TALK: {
+    key: 'TALK',
+    symbol: 'TALK',
+    nativeChain: 'ethereum',
+    tokenId: {
+      chain: 'ethereum',
+      address: '0xCAabCaA4ca42e1d86dE1a201c818639def0ba7A7',
+    },
+    icon: Icon.TALK,
+    coinGeckoId: 'talken',
+    color: '#FFFFFF',
+    decimals: {
+      Ethereum: 18,
+      default: 8,
+    },
+    foreignAssets: {
+      klaytn: {
+        address: '0x55863cb9a7f92c134e9f8edb6c655b92d60493b5',
+        decimals: 18,
+      },
+      polygon: {
+        address: '0xE7e72bE51C3b4E1F3cEB34e177e1bA1c1744fD7d',
+        decimals: 18,
+      },
+      bsc: {
+        address: '0x7D61D3752F759c71f5291358408947aFf7b0Ff2c',
+        decimals: 18,
+      },
+      solana: {
+        address: '3xUK7cHo3Vfh7uQCTkS2GUhJJuXhg2RXgApNYKHZ1B5R',
+        decimals: 8,
+      },
+    },
+  },
 };

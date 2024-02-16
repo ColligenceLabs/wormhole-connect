@@ -2217,4 +2217,42 @@ export const TESTNET_TOKENS: TokensConfig = {
       default: 8,
     },
   },
+  TALK: {
+    key: 'TALK',
+    symbol: 'TALK',
+    nativeChain: 'goerli',
+    tokenId: {
+      chain: 'goerli',
+      address: '0xeA4257612eE631383D0C8468cCCe590E37bc6f97',
+    },
+    icon: Icon.TALK,
+    coinGeckoId: 'talken',
+    color: '#FFFFFF',
+    decimals: {
+      Ethereum: 18,
+      default: 8,
+    },
+    foreignAssets: {
+      sepolia: {
+        address: '0x1cc20f446679cf79436cC8d5F6c3EB60B1954463',
+        decimals: 18,
+      },
+      klaytn: {
+        address: '0x156e8d865301a68567ecf8fa7c30b83ab312c6cf',
+        decimals: 18,
+      },
+      mumbai: {
+        address: '0x83EF185441fA4eACF3AB19984eaB4D7341b317Ac',
+        decimals: 18,
+      },
+      bsc: {
+        address: '0x479c24B16A7F79Ea56E3F990976c834400f5ba0C',
+        decimals: 18,
+      },
+      solana: {
+        address: '72WDzNNf3VbNdEenGsncy8XHRa7cbaQxBfayg2tMnMt8',
+        decimals: 8,
+      },
+    },
+  },
 };
